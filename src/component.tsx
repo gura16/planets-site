@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import mercury from "./assets/planet-mercury.svg";
+import source from "./assets/icon-source.svg";
 function Component() {
   return (
     <div>
@@ -17,6 +18,27 @@ function Component() {
           of all the Sun's planets. Mercury is one of four terrestrial planets
           in the Solar System, and is a rocky body like Earth.
         </Text>
+        <Source>
+          Source : Wikipedia <img src={source} />
+        </Source>
+        <Datadiv>
+          <Data>
+            <Datatext>ROTATION TIME</Datatext>
+            <Datanumber>58.6 days</Datanumber>
+          </Data>
+          <Data>
+            <Datatext>REVOLUTION TIME</Datatext>
+            <Datanumber>58.6 days</Datanumber>
+          </Data>
+          <Data>
+            <Datatext>RADIUS</Datatext>
+            <Datanumber>58.6 days</Datanumber>
+          </Data>
+          <Data>
+            <Datatext>AVERAGE TEMP.</Datatext>
+            <Datanumber>58.6 days</Datanumber>
+          </Data>
+        </Datadiv>
       </Datatypes>
     </div>
   );
@@ -54,7 +76,9 @@ const Datatypes = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 20px;
   margin-top: 60px;
+  margin-bottom: 50px;
 `;
 
 const Name = styled.h2`
@@ -77,4 +101,53 @@ const Text = styled.p`
   color: white;
   width: 327px;
   height: 110px;
+`;
+
+const Source = styled.p`
+  font-family: "League Spartan", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 25px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: white;
+`;
+
+const Datadiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
+const Data = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  width: 327px;
+  height: 48px;
+  border: 1px;
+  opacity: 0.20000000298023224px;
+  border: 1px solid #6d6b6b;
+`;
+
+const Datatext = styled.p`
+  font-family: "League Spartan", sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0.7272727489471436px;
+  text-align: left;
+  color: white;
+  opacity: 10px;
+`;
+
+const Datanumber = styled.p`
+  font-family: "Antonio";
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: -0.75px;
+  text-align: right;
+  color: white;
 `;
