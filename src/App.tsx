@@ -1,19 +1,21 @@
 import "./assets/style.css";
+import Component from "./component";
 import { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { createGlobalStyle } from "styled-components";
 import navfoto from "./assets/icon-hamburger.svg";
 import arrow from "./assets/icon-chevron.svg";
+
 function App() {
   const [planets, setPlanets] = useState<boolean>(false);
 
   return (
     <div>
       <GlobalStyle />
-      <Plantextdiv>
+      <Header>
         <Planettext>THE PLANETS</Planettext>
         <Burgerbutton src={navfoto} onClick={() => setPlanets(!planets)} />
-      </Plantextdiv>
+      </Header>
       {planets ? (
         <Plandiv>
           <Ovaldiv>
@@ -74,6 +76,8 @@ function App() {
           </Ovaldiv>
         </Plandiv>
       ) : null}
+
+      <Component />
     </div>
   );
 }
@@ -105,12 +109,13 @@ const Plan = styled.p`
   color: white;
 `;
 
-const Plantextdiv = styled.div`
+const Header = styled.div`
   display: flex;
   justify-content: space-between;
   text-align: center;
   padding: 20px 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 1);
+  background-color: #070724;
 `;
 
 const Oval = styled.div<{ color: string }>`
@@ -139,11 +144,24 @@ const Fototext = styled.div`
   display: flex;
   gap: 20px;
 `;
+
+const fallDown = keyframes`
+   0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+`;
 const Plandiv = styled.nav`
   padding: 40px 20px;
   display: flex;
   flex-direction: column;
   gap: 30px;
+  animation: ${fallDown} 1s ease-in-out forwards;
+  position: absolute;
+  width: 100%;
+  z-index: -1;
 `;
 
 const moveBackground = keyframes`
