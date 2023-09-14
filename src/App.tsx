@@ -7,7 +7,7 @@ import navfoto from "./assets/icon-hamburger.svg";
 import arrow from "./assets/icon-chevron.svg";
 
 function App() {
-  const [planets, setPlanets] = useState<boolean>(false);
+  const [planets, setPlanets] = useState<boolean | null>(false);
 
   return (
     <div>
@@ -87,7 +87,10 @@ export default App;
 const Burgerbutton = styled.img`
   width: 24px;
   height: 17px;
-  opacity: 0.2487458735704422px;
+  opacity: 0.24px;
+  @media only screen and (min-width: 768px) {
+    display: none;
+  }
 `;
 
 const Planettext = styled.p`
@@ -98,6 +101,9 @@ const Planettext = styled.p`
   letter-spacing: -1.04px;
   text-align: left;
   color: white;
+  @media only screen and (min-width: 768px) {
+    margin: auto;
+  }
 `;
 
 const Plan = styled.p`
@@ -162,6 +168,8 @@ const Plandiv = styled.nav`
   position: absolute;
   width: 100%;
   z-index: -1;
+  @media only screen and (min-width: 768px) {
+  }
 `;
 
 const moveBackground = keyframes`
