@@ -104,6 +104,9 @@ const Planettext = styled.p`
   @media only screen and (min-width: 768px) {
     margin: auto;
   }
+  @media only screen and (min-width: 1024px) {
+    margin-left: 15px;
+  }
 `;
 
 const Plan = styled.p`

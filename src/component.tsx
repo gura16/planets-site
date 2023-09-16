@@ -74,6 +74,7 @@ const Infotype = styled.div`
   gap: 80px;
   padding: 0 20px;
   height: 50px;
+  grid-area: type;
 
   width: 100%;
   grid-area: infotype;
@@ -83,6 +84,9 @@ const Infotype = styled.div`
     gap: 10px;
     margin-top: 120px;
   }
+  @media only screen and (min-width: 1024px) {
+    margin-left: 150px;
+  }
 `;
 
 const Foto = styled.img`
@@ -90,8 +94,15 @@ const Foto = styled.img`
   height: 111px;
   grid-area: foto;
   @media only screen and (min-width: 768px) {
+    width: 184px;
+    height: 184px;
     margin: auto;
     margin-top: 120px;
+  }
+  @media only screen and (min-width: 1024px) {
+    width: 290px;
+    height: 290px;
+    margin-left: 60px;
   }
 `;
 
@@ -104,6 +115,9 @@ const Griddiv = styled.div`
   margin-top: 80px;
   @media only screen and (min-width: 768px) {
     align-items: start;
+  }
+  @media only screen and (min-width: 1024px) {
+    margin-left: 350px;
   }
 `;
 
@@ -120,6 +134,12 @@ const Datatypes = styled.div`
     grid-template-areas:
       "foto foto"
       "information infotype"
+      "datainfo datainfo";
+  }
+  @media only screen and (min-width: 1024px) {
+    grid-template-areas:
+      "foto information"
+      "foto infotype"
       "datainfo datainfo";
   }
 `;
@@ -177,6 +197,10 @@ const Datadiv = styled.div`
     display: flex;
     flex-direction: row;
   }
+
+  @media only screen and (min-width: 1024px) {
+    margin-top: 100px;
+  }
 `;
 
 const Data = styled.div`
@@ -198,6 +222,10 @@ const Data = styled.div`
     justify-content: center;
     gap: 10px;
   }
+  @media only screen and (min-width: 1024px) {
+    width: 255px;
+    height: 128px;
+  }
 `;
 
 const Datatext = styled.p`
@@ -209,6 +237,14 @@ const Datatext = styled.p`
   text-align: left;
   color: white;
   opacity: 0.5;
+  @media only screen and (min-width: 1024px) {
+    font-family: "League Spartan", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 25px;
+    letter-spacing: 1px;
+    text-align: left;
+  }
 `;
 
 const Datanumber = styled.p`
@@ -219,4 +255,12 @@ const Datanumber = styled.p`
   letter-spacing: -0.75px;
   text-align: right;
   color: white;
+  @media only screen and (min-width: 1024px) {
+    font-family: "Antonio";
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 52px;
+    letter-spacing: -1.5px;
+    text-align: left;
+  }
 `;
