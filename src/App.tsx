@@ -1,6 +1,6 @@
 import "./assets/style.css";
 import Component from "./component";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import { createGlobalStyle } from "styled-components";
 import navfoto from "./assets/icon-hamburger.svg";
@@ -8,6 +8,20 @@ import arrow from "./assets/icon-chevron.svg";
 
 function App() {
   const [planets, setPlanets] = useState<boolean | null>(false);
+  const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
+
+  // Update the screen width state when the window is resized
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const hidePlandiv = screenWidth >= 768;
 
   return (
     <div>
@@ -17,7 +31,7 @@ function App() {
         <Burgerbutton src={navfoto} onClick={() => setPlanets(!planets)} />
       </Header>
       {planets ? (
-        <Plandiv>
+        <Plandiv style={{ display: hidePlandiv ? "none" : "block" }}>
           <Ovaldiv>
             <Fototext>
               <Oval color="#DEF4FC"></Oval>
@@ -76,8 +90,7 @@ function App() {
           </Ovaldiv>
         </Plandiv>
       ) : null}
-
-      <Component />
+      {hidePlandiv && planets && <Component />}
     </div>
   );
 }
@@ -171,6 +184,7 @@ const Plandiv = styled.nav`
   position: absolute;
   width: 100%;
   z-index: -1;
+
   @media only screen and (min-width: 768px) {
   }
 `;
