@@ -10,7 +10,6 @@ function App() {
   const [planets, setPlanets] = useState<boolean | null>(false);
   const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
 
-  // Update the screen width state when the window is resized
   useEffect(() => {
     const handleResize = () => {
       setScreenWidth(window.innerWidth);
@@ -21,7 +20,8 @@ function App() {
     };
   }, []);
 
-  const hidePlandiv = screenWidth >= 768;
+  // Conditionally show Plandiv based on screen width
+  const showPlandiv = screenWidth <= 768;
 
   return (
     <div>
@@ -30,8 +30,8 @@ function App() {
         <Planettext>THE PLANETS</Planettext>
         <Burgerbutton src={navfoto} onClick={() => setPlanets(!planets)} />
       </Header>
-      {planets ? (
-        <Plandiv style={{ display: hidePlandiv ? "none" : "block" }}>
+      {showPlandiv && (
+        <Plandiv>
           <Ovaldiv>
             <Fototext>
               <Oval color="#DEF4FC"></Oval>
@@ -89,8 +89,8 @@ function App() {
             <Arrow src={arrow} />
           </Ovaldiv>
         </Plandiv>
-      ) : null}
-      {hidePlandiv && planets && <Component />}
+      )}
+      {screenWidth > 768 && <Component />}
     </div>
   );
 }
