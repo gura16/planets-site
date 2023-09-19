@@ -85,7 +85,7 @@ const Infotype = styled.div`
     margin-top: 120px;
   }
   @media only screen and (min-width: 1024px) {
-    margin-left: 150px;
+    margin-left: 90px;
   }
 `;
 
@@ -117,7 +117,7 @@ const Griddiv = styled.div`
     align-items: start;
   }
   @media only screen and (min-width: 1024px) {
-    margin-left: 350px;
+    margin-left: 240px;
   }
 `;
 
@@ -223,7 +223,7 @@ const Data = styled.div`
     gap: 10px;
   }
   @media only screen and (min-width: 1024px) {
-    width: 255px;
+    width: 225px;
     height: 128px;
   }
 `;
@@ -236,7 +236,6 @@ const Datatext = styled.p`
   letter-spacing: 0.7px;
   text-align: left;
   color: white;
-  opacity: 0.5;
   @media only screen and (min-width: 1024px) {
     font-family: "League Spartan", sans-serif;
     font-size: 11px;

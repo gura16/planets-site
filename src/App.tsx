@@ -8,20 +8,18 @@ import arrow from "./assets/icon-chevron.svg";
 
 function App() {
   const [planets, setPlanets] = useState<boolean | null>(false);
-  const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
 
   useEffect(() => {
     const handleResize = () => {
-      setScreenWidth(window.innerWidth);
+      setWindowWidth(window.innerWidth);
     };
+
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-  // Conditionally show Plandiv based on screen width
-  const showPlandiv = screenWidth <= 768;
 
   return (
     <div>
@@ -30,7 +28,7 @@ function App() {
         <Planettext>THE PLANETS</Planettext>
         <Burgerbutton src={navfoto} onClick={() => setPlanets(!planets)} />
       </Header>
-      {showPlandiv && (
+      {windowWidth > 768 ? (
         <Plandiv>
           <Ovaldiv>
             <Fototext>
@@ -89,8 +87,8 @@ function App() {
             <Arrow src={arrow} />
           </Ovaldiv>
         </Plandiv>
-      )}
-      {screenWidth > 768 && <Component />}
+      ) : null}
+      {!planets ? <Component /> : null}
     </div>
   );
 }
@@ -116,9 +114,11 @@ const Planettext = styled.p`
   color: white;
   @media only screen and (min-width: 768px) {
     margin: auto;
+    margin-top: -1px;
   }
   @media only screen and (min-width: 1024px) {
     margin-left: 15px;
+    margin-top: 35px;
   }
 `;
 
@@ -129,6 +129,8 @@ const Plan = styled.p`
   line-height: 25px;
   letter-spacing: 1.3px;
   color: white;
+  @media only screen and (min-width: 768px) {
+  }
 `;
 
 const Header = styled.div`
@@ -138,6 +140,10 @@ const Header = styled.div`
   padding: 20px 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 1);
   background-color: #070724;
+  @media only screen and (min-width: 768px) {
+    height: 100px;
+    padding: unset;
+  }
 `;
 
 const Oval = styled.div<{ color: string }>`
@@ -145,6 +151,9 @@ const Oval = styled.div<{ color: string }>`
   height: 20px;
   background-color: ${(props) => props.color};
   border-radius: 50%;
+  @media only screen and (min-width: 768px) {
+    display: none;
+  }
 `;
 
 const Ovaldiv = styled.div`
@@ -153,6 +162,9 @@ const Ovaldiv = styled.div`
   align-items: center;
   border-bottom: 1px solid #6d6b6b;
   padding-right: 10px;
+  @media only screen and (min-width: 768px) {
+    border-bottom: unset;
+  }
 `;
 
 const Arrow = styled.img`
@@ -160,6 +172,9 @@ const Arrow = styled.img`
   height: 8px;
   border: 1px;
   opacity: 0.4px;
+  @media only screen and (min-width: 768px) {
+    display: none;
+  }
 `;
 
 const Fototext = styled.div`
@@ -183,9 +198,26 @@ const Plandiv = styled.nav`
   animation: ${fallDown} 1s ease-in-out forwards;
   position: absolute;
   width: 100%;
-  z-index: -1;
+  height: 100%;
+  background-color: #070724;
 
   @media only screen and (min-width: 768px) {
+    justify-content: center;
+    gap: 20px;
+    animation: none;
+    background-color: unset;
+    flex-direction: row;
+    margin-top: -525px;
+    font-family: "League Spartan", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 25px;
+    letter-spacing: 1px;
+    text-align: left;
+  }
+  @media only screen and (min-width: 1024px) {
+    justify-content: end;
+    margin-top: -545px;
   }
 `;
 
