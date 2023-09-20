@@ -8,27 +8,16 @@ import arrow from "./assets/icon-chevron.svg";
 
 function App() {
   const [planets, setPlanets] = useState<boolean | null>(false);
-  const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   return (
     <div>
       <GlobalStyle />
       <Header>
-        <Planettext>THE PLANETS</Planettext>
-        <Burgerbutton src={navfoto} onClick={() => setPlanets(!planets)} />
-      </Header>
-      {windowWidth > 768 ? (
+        <Buttondiv>
+          <Planettext>THE PLANETS</Planettext>
+          <Burgerbutton src={navfoto} onClick={() => setPlanets(!planets)} />
+        </Buttondiv>
+
         <Plandiv>
           <Ovaldiv>
             <Fototext>
@@ -87,13 +76,26 @@ function App() {
             <Arrow src={arrow} />
           </Ovaldiv>
         </Plandiv>
-      ) : null}
-      {!planets ? <Component /> : null}
+      </Header>
+
+      <Component />
     </div>
   );
 }
 
 export default App;
+
+const Buttondiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  border-bottom: 1px solid white;
+  height: 60px;
+  @media only screen and (min-width: 768px) {
+    border-bottom: unset;
+  }
+`;
 
 const Burgerbutton = styled.img`
   width: 24px;
@@ -114,11 +116,15 @@ const Planettext = styled.p`
   color: white;
   @media only screen and (min-width: 768px) {
     margin: auto;
-    margin-top: -1px;
   }
   @media only screen and (min-width: 1024px) {
-    margin-left: 15px;
-    margin-top: 35px;
+    font-family: "Antonio";
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 36px;
+    letter-spacing: -1.04px;
+    text-align: left;
+    width: 109px;
   }
 `;
 
@@ -134,15 +140,14 @@ const Plan = styled.p`
 `;
 
 const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  text-align: center;
-  padding: 20px 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 1);
-  background-color: #070724;
   @media only screen and (min-width: 768px) {
-    height: 100px;
-    padding: unset;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid white;
+  }
+  @media only screen and (min-width: 1024px) {
+    flex-direction: row;
+    justify-content: space-between;
   }
 `;
 
@@ -191,7 +196,7 @@ const fallDown = keyframes`
   }
 `;
 const Plandiv = styled.nav`
-  padding: 40px 20px;
+  padding: 20px 20px;
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -207,17 +212,16 @@ const Plandiv = styled.nav`
     animation: none;
     background-color: unset;
     flex-direction: row;
-    margin-top: -525px;
     font-family: "League Spartan", sans-serif;
     font-size: 11px;
     font-weight: 700;
     line-height: 25px;
     letter-spacing: 1px;
     text-align: left;
+    position: unset;
   }
   @media only screen and (min-width: 1024px) {
     justify-content: end;
-    margin-top: -545px;
   }
 `;
 
