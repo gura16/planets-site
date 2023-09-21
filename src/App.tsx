@@ -1,13 +1,13 @@
 import "./assets/style.css";
 import Component from "./component";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { createGlobalStyle } from "styled-components";
 import navfoto from "./assets/icon-hamburger.svg";
 import arrow from "./assets/icon-chevron.svg";
 
 function App() {
-  const [planets, setPlanets] = useState<boolean | null>(false);
+  const [planets, setPlanets] = useState<boolean>(false);
 
   return (
     <div>
@@ -18,7 +18,7 @@ function App() {
           <Burgerbutton src={navfoto} onClick={() => setPlanets(!planets)} />
         </Buttondiv>
 
-        <Plandiv>
+        <Plandiv primary={planets.toString()}>
           <Ovaldiv>
             <Fototext>
               <Oval color="#DEF4FC"></Oval>
@@ -167,8 +167,11 @@ const Ovaldiv = styled.div`
   align-items: center;
   border-bottom: 1px solid #6d6b6b;
   padding-right: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   @media only screen and (min-width: 768px) {
     border-bottom: unset;
+    padding: unset;
   }
 `;
 
@@ -195,7 +198,7 @@ const fallDown = keyframes`
     transform: translateY(0);
   }
 `;
-const Plandiv = styled.nav`
+const Plandiv = styled.nav<{ primary: string }>`
   padding: 20px 20px;
   display: flex;
   flex-direction: column;
@@ -205,6 +208,7 @@ const Plandiv = styled.nav`
   width: 100%;
   height: 100%;
   background-color: #070724;
+  display: ${(props) => (props.primary === "true" ? "inLine" : "none")};
 
   @media only screen and (min-width: 768px) {
     justify-content: center;
@@ -219,6 +223,7 @@ const Plandiv = styled.nav`
     letter-spacing: 1px;
     text-align: left;
     position: unset;
+    display: flex;
   }
   @media only screen and (min-width: 1024px) {
     justify-content: end;
