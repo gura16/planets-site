@@ -8,6 +8,11 @@ import arrow from "./assets/icon-chevron.svg";
 
 function App() {
   const [planets, setPlanets] = useState<boolean>(false);
+  const [activButton, setActivButton] = useState<number>(0);
+
+  const handleButtonClick = (index: number) => {
+    setActivButton(index);
+  };
 
   return (
     <div>
@@ -17,9 +22,11 @@ function App() {
           <Planettext>THE PLANETS</Planettext>
           <Burgerbutton src={navfoto} onClick={() => setPlanets(!planets)} />
         </Buttondiv>
-
         <Plandiv primary={planets.toString()}>
-          <Ovaldiv>
+          <Ovaldiv
+            active={activButton === 0}
+            onclick={() => handleButtonClick(0)}
+          >
             <Fototext>
               <Oval color="#DEF4FC"></Oval>
               <Plan>MERCURY</Plan>
