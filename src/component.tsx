@@ -1,25 +1,78 @@
 import styled from "styled-components";
-import mercury from "./assets/planet-mercury.svg";
 import source from "./assets/icon-source.svg";
-function Component() {
+import { useState } from "react";
+
+function Component(props: any) {
+  const url = "https://planets-api.vercel.app/api/v1/planets";
+
+  const [activeType, setActiveType] = useState<number>(0);
+
+  const hanldeTypeClick = (index: number) => {
+    setActiveType(index);
+    getData(index);
+  };
+
+  const [image, setImage] = useState<string>("");
+  const [planetName, setPlanetName] = useState<string>("");
+  const [rotationTime, setRotationTime] = useState<string>("");
+  const [revolutionTime, setRevolutionTime] = useState<string>("");
+  const [radius, setRadius] = useState<string>("");
+  const [average, setAverage] = useState<string>("");
+  const [colors, setColor] = useState<string>("");
+  const [text, setText] = useState<string>("");
+
+  async function getData(number: number) {
+    const res = await fetch(url);
+    const data = await res.json();
+    setImage(data[props.planet].images.planet);
+    setPlanetName(data[props.planet].name);
+    setRotationTime(data[props.planet].rotation);
+    setRevolutionTime(data[props.planet].revolution);
+    setRadius(data[props.planet].radius);
+    setAverage(data[props.planet].temperature);
+    setColor(data[props.planet].color);
+
+    if (number == 0) {
+      setText(data[props.planet].overview.content);
+    }
+    if (number == 1) {
+      setText(data[props.planet].structure.content);
+    }
+    if (number == 2) {
+      setText(data[props.planet].geology.content);
+    }
+  }
+
   return (
     <div>
       <Datatypes>
         <Infotype>
-          <Types>OVERVIEW</Types>
-          <Types>STRUCTURE</Types>
-          <Types>SURFACE</Types>
+          <Types
+            onClick={() => hanldeTypeClick(0)}
+            active2={activeType === 0}
+            color={colors}
+          >
+            OVERVIEW
+          </Types>
+          <Types
+            onClick={() => hanldeTypeClick(1)}
+            active2={activeType === 1}
+            color={colors}
+          >
+            STRUCTURE
+          </Types>
+          <Types
+            onClick={() => hanldeTypeClick(2)}
+            active2={activeType === 2}
+            color={colors}
+          >
+            SURFACE
+          </Types>
         </Infotype>
-        <Foto src={mercury} />
+        <Foto src={image} />
         <Griddiv>
-          <Name>MERCURY</Name>
-          <Text>
-            Mercury is the smallest planet in the Solar System and the closest
-            to the Sun. Its orbit around the Sun takes 87.97 Earth days, the
-            shortest of all the Sun's planets. Mercury is one of four
-            terrestrial planets in the Solar System, and is a rocky body like
-            Earth.
-          </Text>
+          <Name>{planetName}</Name>
+          <Text>{text}</Text>
           <Source>
             Source : Wikipedia <img src={source} />
           </Source>
@@ -27,19 +80,19 @@ function Component() {
         <Datadiv>
           <Data>
             <Datatext>ROTATION TIME</Datatext>
-            <Datanumber>58.6 days</Datanumber>
+            <Datanumber>{rotationTime}</Datanumber>
           </Data>
           <Data>
             <Datatext>REVOLUTION TIME</Datatext>
-            <Datanumber>58.6 days</Datanumber>
+            <Datanumber>{revolutionTime}</Datanumber>
           </Data>
           <Data>
             <Datatext>RADIUS</Datatext>
-            <Datanumber>58.6 days</Datanumber>
+            <Datanumber>{radius}</Datanumber>
           </Data>
           <Data>
             <Datatext>AVERAGE TEMP.</Datatext>
-            <Datanumber>58.6 days</Datanumber>
+            <Datanumber>{average}</Datanumber>
           </Data>
         </Datadiv>
       </Datatypes>
@@ -48,7 +101,7 @@ function Component() {
 }
 export default Component;
 
-const Types = styled.div`
+const Types = styled.div<{ active2: any; color: string }>`
   font-family: "League Spartan", sans-serif;
   font-size: 9px;
   font-weight: 700;
@@ -57,13 +110,17 @@ const Types = styled.div`
   text-align: center;
   color: white;
   padding: 18px 0px;
-  border-bottom: 4px solid #419ebb;
+  cursor: pointer;
+  border-bottom: ${(props) =>
+    props.active2 ? `4px solid ${props.color}` : "none"};
+
   @media only screen and (min-width: 768px) {
     width: 281px;
     height: 40px;
-    border: 1px solid rgba(255, 255, 255, 1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     text-align: left;
     padding-left: 30px;
+    background-color: ${(props) => (props.active2 ? ` ${props.color}` : "")};
   }
 `;
 

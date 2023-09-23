@@ -8,12 +8,11 @@ import arrow from "./assets/icon-chevron.svg";
 
 function App() {
   const [planets, setPlanets] = useState<boolean>(false);
-  const [activButton, setActivButton] = useState<number>(0);
+  const [activeButton, setActiveButton] = useState<number>(0);
 
-  const handleButtonClick = (index: number) => {
-    setActivButton(index);
+  const handleButton = (index: number) => {
+    setActiveButton(index);
   };
-
   return (
     <div>
       <GlobalStyle />
@@ -23,69 +22,66 @@ function App() {
           <Burgerbutton src={navfoto} onClick={() => setPlanets(!planets)} />
         </Buttondiv>
         <Plandiv primary={planets.toString()}>
-          <Ovaldiv
-            active={activButton === 0}
-            onclick={() => handleButtonClick(0)}
-          >
+          <Ovaldiv onClick={() => handleButton(0)}>
             <Fototext>
               <Oval color="#DEF4FC"></Oval>
-              <Plan>MERCURY</Plan>
+              <Plan active={activeButton === 0}>MERCURY</Plan>
             </Fototext>
             <Arrow src={arrow} />
           </Ovaldiv>
-          <Ovaldiv>
+          <Ovaldiv onClick={() => handleButton(1)}>
             <Fototext>
               <Oval color="#F7CC7F"></Oval>
-              <Plan>VENUS</Plan>
+              <Plan active={activeButton === 1}>VENUS</Plan>
             </Fototext>
             <Arrow src={arrow} />
           </Ovaldiv>
-          <Ovaldiv>
+          <Ovaldiv onClick={() => handleButton(2)}>
             <Fototext>
               <Oval color="#545BFE"></Oval>
-              <Plan>EARTH</Plan>
+              <Plan active={activeButton === 2}>EARTH</Plan>
             </Fototext>
             <Arrow src={arrow} />
           </Ovaldiv>
-          <Ovaldiv>
+          <Ovaldiv onClick={() => handleButton(3)}>
             <Fototext>
               <Oval color="#FF6A45"></Oval>
-              <Plan>MARS</Plan>
+              <Plan active={activeButton === 3}>MARS</Plan>
             </Fototext>
             <Arrow src={arrow} />
           </Ovaldiv>
-          <Ovaldiv>
+          <Ovaldiv onClick={() => handleButton(4)}>
             <Fototext>
               <Oval color="#ECAD7A"></Oval>
-              <Plan>JUPITER</Plan>
+              <Plan active={activeButton === 4}>JUPITER</Plan>
             </Fototext>
             <Arrow src={arrow} />
           </Ovaldiv>
-          <Ovaldiv>
+          <Ovaldiv onClick={() => handleButton(5)}>
             <Fototext>
               <Oval color="#FCCB6B"></Oval>
-              <Plan>SATURN</Plan>
+              <Plan active={activeButton === 5}>SATURN</Plan>
             </Fototext>
             <Arrow src={arrow} />
           </Ovaldiv>
-          <Ovaldiv>
+          <Ovaldiv onClick={() => handleButton(6)}>
             <Fototext>
               <Oval color="#65F0D5"></Oval>
-              <Plan>URANUS</Plan>
+              <Plan active={activeButton === 6}>URANUS</Plan>
             </Fototext>
             <Arrow src={arrow} />
           </Ovaldiv>
-          <Ovaldiv>
+          <Ovaldiv onClick={() => handleButton(7)}>
             <Fototext>
               <Oval color="#497EFA"></Oval>
-              <Plan>NEPTUNE</Plan>
+              <Plan active={activeButton === 7}>NEPTUNE</Plan>
             </Fototext>
             <Arrow src={arrow} />
           </Ovaldiv>
         </Plandiv>
       </Header>
 
-      <Component />
+      <Component planet="1" />
     </div>
   );
 }
@@ -135,13 +131,15 @@ const Planettext = styled.p`
   }
 `;
 
-const Plan = styled.p`
+const Plan = styled.p<{ active: boolean }>`
   font-family: "League Spartan", sans-serif;
   font-size: 15px;
   font-weight: 700;
   line-height: 25px;
   letter-spacing: 1.3px;
   color: white;
+  opacity: ${(props) => (props.active ? "1" : "0.60")};
+  cursor: pointer;
   @media only screen and (min-width: 768px) {
   }
 `;
