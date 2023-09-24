@@ -12,7 +12,6 @@ function Component(props: any) {
     getData(index);
   };
 
-  const [image, setImage] = useState<string>("");
   const [planetName, setPlanetName] = useState<string>("");
   const [rotationTime, setRotationTime] = useState<string>("");
   const [revolutionTime, setRevolutionTime] = useState<string>("");
@@ -20,11 +19,15 @@ function Component(props: any) {
   const [average, setAverage] = useState<string>("");
   const [colors, setColor] = useState<string>("");
   const [text, setText] = useState<string>("");
+  const [sources, setSources] = useState<string>("");
+  const [planetsImage, setPlanetsImage] = useState<string>("");
+  const [planetsImage1, setPlanetImage1] = useState<string>("");
+  const [planetHiddeImage, setPlanetHiddeImage] = useState<boolean>(false);
 
   async function getData(number: number) {
     const res = await fetch(url);
     const data = await res.json();
-    setImage(data[props.planet].images.planet);
+
     setPlanetName(data[props.planet].name);
     setRotationTime(data[props.planet].rotation);
     setRevolutionTime(data[props.planet].revolution);
@@ -34,12 +37,22 @@ function Component(props: any) {
 
     if (number == 0) {
       setText(data[props.planet].overview.content);
+      setSources(data[props.planet].overview.source);
+      setPlanetsImage(data[props.planet].images.planet);
+      setPlanetHiddeImage(false);
     }
     if (number == 1) {
       setText(data[props.planet].structure.content);
+      setSources(data[props.planet].structure.souurce);
+      setPlanetsImage(data[props.planet].images.internal);
+      setPlanetHiddeImage(false);
     }
     if (number == 2) {
       setText(data[props.planet].geology.content);
+      setSources(data[props.planet].geology.souurce);
+      setPlanetsImage(data[props.planet].images.planet);
+      setPlanetImage1(data[props.planet].images.geology);
+      setPlanetHiddeImage(true);
     }
   }
 
@@ -69,11 +82,19 @@ function Component(props: any) {
             SURFACE
           </Types>
         </Infotype>
-        <Foto src={image} />
+        <Fotodiv>
+          <Foto src={planetsImage} />
+          <Foto1
+            src={planetsImage1}
+            style={
+              planetHiddeImage ? { display: "inline" } : { display: "none" }
+            }
+          />
+        </Fotodiv>
         <Griddiv>
           <Name>{planetName}</Name>
           <Text>{text}</Text>
-          <Source>
+          <Source href={sources}>
             Source : Wikipedia <img src={source} />
           </Source>
         </Griddiv>
@@ -146,6 +167,10 @@ const Infotype = styled.div`
   }
 `;
 
+const Fotodiv = styled.div`
+  position: relative;
+`;
+
 const Foto = styled.img`
   width: 111px;
   height: 111px;
@@ -161,6 +186,13 @@ const Foto = styled.img`
     height: 290px;
     margin-left: 60px;
   }
+`;
+const Foto1 = styled.img`
+  width: 129px;
+  height: 129px;
+  position: absolute;
+  top: 340px;
+  left: 140px;
 `;
 
 const Griddiv = styled.div`
@@ -234,7 +266,7 @@ const Text = styled.p`
   }
 `;
 
-const Source = styled.p`
+const Source = styled.a`
   font-family: "League Spartan", sans-serif;
   font-size: 12px;
   font-weight: 700;
@@ -243,6 +275,7 @@ const Source = styled.p`
   text-align: left;
   color: white;
   grid-area: source;
+  cursor: pointer;
 `;
 
 const Datadiv = styled.div`
