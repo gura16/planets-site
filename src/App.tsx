@@ -5,6 +5,7 @@ import styled, { keyframes } from "styled-components";
 import { createGlobalStyle } from "styled-components";
 import navfoto from "./assets/icon-hamburger.svg";
 import arrow from "./assets/icon-chevron.svg";
+import { Link, Outlet } from "react-router-dom";
 
 function App() {
   const [planets, setPlanets] = useState<boolean>(false);
@@ -22,66 +23,82 @@ function App() {
           <Burgerbutton src={navfoto} onClick={() => setPlanets(!planets)} />
         </Buttondiv>
         <Plandiv primary={planets.toString()}>
-          <Ovaldiv onClick={() => handleButton(0)}>
-            <Fototext>
-              <Oval color="#DEF4FC"></Oval>
-              <Plan active={activeButton === 0}>MERCURY</Plan>
-            </Fototext>
-            <Arrow src={arrow} />
-          </Ovaldiv>
-          <Ovaldiv onClick={() => handleButton(1)}>
-            <Fototext>
-              <Oval color="#F7CC7F"></Oval>
-              <Plan active={activeButton === 1}>VENUS</Plan>
-            </Fototext>
-            <Arrow src={arrow} />
-          </Ovaldiv>
-          <Ovaldiv onClick={() => handleButton(2)}>
-            <Fototext>
-              <Oval color="#545BFE"></Oval>
-              <Plan active={activeButton === 2}>EARTH</Plan>
-            </Fototext>
-            <Arrow src={arrow} />
-          </Ovaldiv>
-          <Ovaldiv onClick={() => handleButton(3)}>
-            <Fototext>
-              <Oval color="#FF6A45"></Oval>
-              <Plan active={activeButton === 3}>MARS</Plan>
-            </Fototext>
-            <Arrow src={arrow} />
-          </Ovaldiv>
-          <Ovaldiv onClick={() => handleButton(4)}>
-            <Fototext>
-              <Oval color="#ECAD7A"></Oval>
-              <Plan active={activeButton === 4}>JUPITER</Plan>
-            </Fototext>
-            <Arrow src={arrow} />
-          </Ovaldiv>
-          <Ovaldiv onClick={() => handleButton(5)}>
-            <Fototext>
-              <Oval color="#FCCB6B"></Oval>
-              <Plan active={activeButton === 5}>SATURN</Plan>
-            </Fototext>
-            <Arrow src={arrow} />
-          </Ovaldiv>
-          <Ovaldiv onClick={() => handleButton(6)}>
-            <Fototext>
-              <Oval color="#65F0D5"></Oval>
-              <Plan active={activeButton === 6}>URANUS</Plan>
-            </Fototext>
-            <Arrow src={arrow} />
-          </Ovaldiv>
-          <Ovaldiv onClick={() => handleButton(7)}>
-            <Fototext>
-              <Oval color="#497EFA"></Oval>
-              <Plan active={activeButton === 7}>NEPTUNE</Plan>
-            </Fototext>
-            <Arrow src={arrow} />
-          </Ovaldiv>
+          <Link to="/mercury">
+            <Ovaldiv onClick={() => handleButton(0)}>
+              <Fototext>
+                <Oval color="#DEF4FC"></Oval>
+                <Plan active={activeButton === 0}>MERCURY</Plan>
+              </Fototext>
+              <Arrow src={arrow} />
+            </Ovaldiv>
+          </Link>
+          <Link to="/venus">
+            <Ovaldiv onClick={() => handleButton(1)}>
+              <Fototext>
+                <Oval color="#F7CC7F"></Oval>
+                <Plan active={activeButton === 1}>VENUS</Plan>
+              </Fototext>
+              <Arrow src={arrow} />
+            </Ovaldiv>
+          </Link>
+          <Link to="/earth">
+            <Ovaldiv onClick={() => handleButton(2)}>
+              <Fototext>
+                <Oval color="#545BFE"></Oval>
+                <Plan active={activeButton === 2}>EARTH</Plan>
+              </Fototext>
+              <Arrow src={arrow} />
+            </Ovaldiv>
+          </Link>
+          <Link to="/mars">
+            <Ovaldiv onClick={() => handleButton(3)}>
+              <Fototext>
+                <Oval color="#FF6A45"></Oval>
+                <Plan active={activeButton === 3}>MARS</Plan>
+              </Fototext>
+              <Arrow src={arrow} />
+            </Ovaldiv>
+          </Link>
+          <Link to="/jupiter">
+            <Ovaldiv onClick={() => handleButton(4)}>
+              <Fototext>
+                <Oval color="#ECAD7A"></Oval>
+                <Plan active={activeButton === 4}>JUPITER</Plan>
+              </Fototext>
+              <Arrow src={arrow} />
+            </Ovaldiv>
+          </Link>
+          <Link to="/saturn">
+            <Ovaldiv onClick={() => handleButton(5)}>
+              <Fototext>
+                <Oval color="#FCCB6B"></Oval>
+                <Plan active={activeButton === 5}>SATURN</Plan>
+              </Fototext>
+              <Arrow src={arrow} />
+            </Ovaldiv>
+          </Link>
+          <Link to="/uranus">
+            <Ovaldiv onClick={() => handleButton(6)}>
+              <Fototext>
+                <Oval color="#65F0D5"></Oval>
+                <Plan active={activeButton === 6}>URANUS</Plan>
+              </Fototext>
+              <Arrow src={arrow} />
+            </Ovaldiv>
+          </Link>
+          <Link to="/neptune">
+            <Ovaldiv onClick={() => handleButton(7)}>
+              <Fototext>
+                <Oval color="#497EFA"></Oval>
+                <Plan active={activeButton === 7}>NEPTUNE</Plan>
+              </Fototext>
+              <Arrow src={arrow} />
+            </Ovaldiv>
+          </Link>
         </Plandiv>
       </Header>
 
-      <Component planet="1" />
+      <Outlet />
     </div>
   );
 }

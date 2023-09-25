@@ -164,6 +164,7 @@ const Infotype = styled.div`
   }
   @media only screen and (min-width: 1024px) {
     margin-left: 90px;
+    margin-top: -40px;
   }
 `;
 
@@ -207,6 +208,7 @@ const Griddiv = styled.div`
   }
   @media only screen and (min-width: 1024px) {
     margin-left: 240px;
+    margin-top: -50px;
   }
 `;
 
