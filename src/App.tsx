@@ -1,5 +1,4 @@
 import "./assets/style.css";
-import Component from "./component";
 import { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { createGlobalStyle } from "styled-components";
@@ -23,7 +22,7 @@ function App() {
           <Burgerbutton src={navfoto} onClick={() => setPlanets(!planets)} />
         </Buttondiv>
         <Plandiv primary={planets.toString()}>
-          <Link to="/mercury">
+          <Link style={{ textDecoration: "none" }} to="/mercury">
             <Ovaldiv onClick={() => handleButton(0)}>
               <Fototext>
                 <Oval color="#DEF4FC"></Oval>
@@ -32,7 +31,7 @@ function App() {
               <Arrow src={arrow} />
             </Ovaldiv>
           </Link>
-          <Link to="/venus">
+          <Link style={{ textDecoration: "none" }} to="/venus">
             <Ovaldiv onClick={() => handleButton(1)}>
               <Fototext>
                 <Oval color="#F7CC7F"></Oval>
@@ -41,7 +40,7 @@ function App() {
               <Arrow src={arrow} />
             </Ovaldiv>
           </Link>
-          <Link to="/earth">
+          <Link style={{ textDecoration: "none" }} to="/earth">
             <Ovaldiv onClick={() => handleButton(2)}>
               <Fototext>
                 <Oval color="#545BFE"></Oval>
@@ -50,7 +49,7 @@ function App() {
               <Arrow src={arrow} />
             </Ovaldiv>
           </Link>
-          <Link to="/mars">
+          <Link style={{ textDecoration: "none" }} to="/mars">
             <Ovaldiv onClick={() => handleButton(3)}>
               <Fototext>
                 <Oval color="#FF6A45"></Oval>
@@ -59,7 +58,7 @@ function App() {
               <Arrow src={arrow} />
             </Ovaldiv>
           </Link>
-          <Link to="/jupiter">
+          <Link style={{ textDecoration: "none" }} to="/jupiter">
             <Ovaldiv onClick={() => handleButton(4)}>
               <Fototext>
                 <Oval color="#ECAD7A"></Oval>
@@ -68,7 +67,7 @@ function App() {
               <Arrow src={arrow} />
             </Ovaldiv>
           </Link>
-          <Link to="/saturn">
+          <Link style={{ textDecoration: "none" }} to="/saturn">
             <Ovaldiv onClick={() => handleButton(5)}>
               <Fototext>
                 <Oval color="#FCCB6B"></Oval>
@@ -77,7 +76,7 @@ function App() {
               <Arrow src={arrow} />
             </Ovaldiv>
           </Link>
-          <Link to="/uranus">
+          <Link style={{ textDecoration: "none" }} to="/uranus">
             <Ovaldiv onClick={() => handleButton(6)}>
               <Fototext>
                 <Oval color="#65F0D5"></Oval>
@@ -86,7 +85,7 @@ function App() {
               <Arrow src={arrow} />
             </Ovaldiv>
           </Link>
-          <Link to="/neptune">
+          <Link style={{ textDecoration: "none" }} to="/neptune">
             <Ovaldiv onClick={() => handleButton(7)}>
               <Fototext>
                 <Oval color="#497EFA"></Oval>

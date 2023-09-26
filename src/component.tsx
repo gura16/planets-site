@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import source from "./assets/icon-source.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Component(props: any) {
   const url = "https://planets-api.vercel.app/api/v1/planets";
@@ -55,6 +55,11 @@ function Component(props: any) {
       setPlanetHiddeImage(true);
     }
   }
+
+  useEffect(() => {
+    getData(0);
+    setActiveType(0);
+  }, [props.planet]);
 
   return (
     <div>
@@ -170,6 +175,12 @@ const Infotype = styled.div`
 
 const Fotodiv = styled.div`
   position: relative;
+  display: flex;
+  justify-content: center;
+  @media only screen and (min-width: 768px) {
+    display: flex;
+    justify-content: center;
+  }
 `;
 
 const Foto = styled.img`
@@ -179,7 +190,7 @@ const Foto = styled.img`
   @media only screen and (min-width: 768px) {
     width: 184px;
     height: 184px;
-    margin: auto;
+    margin-left: 200px;
     margin-top: 120px;
   }
   @media only screen and (min-width: 1024px) {
@@ -192,8 +203,16 @@ const Foto1 = styled.img`
   width: 129px;
   height: 129px;
   position: absolute;
-  top: 340px;
-  left: 140px;
+  top: 90px;
+  left: 0px;
+  @media only screen and (min-width: 768px) {
+    top: 280px;
+    left: 240px;
+  }
+  @media only screen and (min-width: 1024px) {
+    top: 380px;
+    left: 170px;
+  }
 `;
 
 const Griddiv = styled.div`
