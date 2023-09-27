@@ -1,10 +1,10 @@
 import "./assets/style.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { createGlobalStyle } from "styled-components";
 import navfoto from "./assets/icon-hamburger.svg";
 import arrow from "./assets/icon-chevron.svg";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 
 function App() {
   const [planets, setPlanets] = useState<boolean>(false);
@@ -13,6 +13,12 @@ function App() {
   const handleButton = (index: number) => {
     setActiveButton(index);
   };
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate("/mercury");
+  }, []);
   return (
     <div>
       <GlobalStyle />
